@@ -1,14 +1,21 @@
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Principal {
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
+        Scanner leitura = new Scanner(System.in);
         ConsultaCep consultaCep = new ConsultaCep();
 
-        try {
-            Endereco novoEndereco = consultaCep.buscaEndereco("01538001");
+        System.out.println("Digite um número de CEP para consulta:");
+        var cep = leitura.nextLine();
+
+try {
+            Endereco novoEndereco = consultaCep.buscaEndereco(cep);
             System.out.println(novoEndereco);
-        } catch (RuntimeException e) {
+        } catch (RuntimeException | IOException e) {
             System.out.println(e.getMessage());
+            System.out.println("Finalizando a aplicação");
         }
+
     }
 }
